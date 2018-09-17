@@ -38,20 +38,20 @@ int main(){
 		char *token = strtok(shdw_line, ":");
 		printf("ID: %s\n", token);
 		if(is_desired_user(token) > 0){
-			uids[num_accounts] = malloc(10);
+			uids[num_accounts] = malloc(strlen(token));
 			strcpy(uids[num_accounts],token);
 			char *shdw_hash = strtok(NULL, ":");
 			if(strcmp(shdw_hash, "*")!=0 && strcmp(shdw_hash, "!")!=0){
 				token = strtok(shdw_hash, "$");
 				token = strtok(NULL, "$");
 				char final_salt[11] = {'$','6','$'};
-				salts[num_accounts] = malloc(50);
 				strcat(final_salt,token);
+				salts[num_accounts] = malloc(strlen(final_salt));
 				strcpy(salts[num_accounts],final_salt);
 				printf("  salt: %s\n", token);
 				token = strtok(NULL, "$");
 				printf("  hash: %s\n", token);
-				hashes[num_accounts] = malloc(300);
+				hashes[num_accounts] = malloc(strlen(token)+strlen(final_salt)+1);
 				strcat(hashes[num_accounts],final_salt);
 				strcat(hashes[num_accounts],"$");
 				strcat(hashes[num_accounts],token);
