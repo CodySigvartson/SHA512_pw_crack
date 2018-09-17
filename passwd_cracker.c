@@ -60,13 +60,13 @@ int main(){
 		}
 	}
 
-
+/*
 	for(int j = 0; j < num_accounts; j++){
 		printf("UID: %s\n", uids[j]);
 		printf("Salt: %s\n", salts[j]);
 		printf("Hash: %s\n", hashes[j]);
 	}
-
+*/
 
 	char word[WORD_LEN];
 	while(fgets(word, WORD_LEN, dict)!=NULL){
@@ -81,6 +81,11 @@ int main(){
 				printf("Password: %s\n", word);
 			}
 		}
+	}
+
+	// free memory
+	for(int i = 0; i < num_accounts;i++){
+		free(uids[i]); free(salts[i]); free(hashes[i]);
 	}
 }
 
